@@ -1,0 +1,13 @@
+#card{
+    text-align: center;
+    height: 350px;
+    width: 300px;
+    background-color: rosybrown;
+}
+#teamBtn{
+    background-color: seagreen;
+}
+#card img{
+    height: 200px;
+    width: 280px;
+}

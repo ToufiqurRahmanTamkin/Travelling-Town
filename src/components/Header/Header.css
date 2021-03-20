@@ -1,0 +1,19 @@
+.list-item{
+    color: #ffffff;
+    list-style: none;
+    padding-top: 3px;
+    font-size: 20px;
+}
+
+.login-btn{
+    background-color: rgb(208, 224, 64);
+    height: 40px;
+    padding: 3px;
+    font-size: 20px;
+    width: 200px;
+    margin: auto;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+}

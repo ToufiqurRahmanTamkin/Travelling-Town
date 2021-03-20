@@ -1,0 +1,54 @@
+.inputStyle{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    align-items: center;
+    text-align: center;
+    background-color: #5ad5de;
+    border-radius: 10px;
+}
+.listStyleClass{
+    list-style: none;
+    font-size: 20px;
+}
+.mainDiv{
+    margin-top: 20px;
+    height: fit-content;
+    background-position: center;
+    padding-top: 10px;
+}
+.inputStyle input{
+    border-radius: 5px;
+    border: 1px solid rgb(64, 71, 172);
+}
+.inputStyle button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+}
+.input{
+    width: 100px;
+}
+.inputStyle button:hover{
+    color: white;
+    background-color: #107218;
+}
+.mapStyle{
+    align-items: center;
+    text-align: center;
+}
+.mapStyle iframe{
+    border-radius: 5px;
+    border: 1px solid #0a0847;
+    height: 150%;
+    width: 100%;
+}
+.destinationClass{
+    height: 30px;
+    width: 30px;
+}
+
+.submitButton{
+    width: 150px;
+}
