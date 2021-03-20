@@ -3,11 +3,13 @@ import {initializeLoginFramework} from "./LoginManager";
 import {UserContext} from "../../App";
 import { useHistory, useLocation } from 'react-router';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from './LoginManager';
-import {handleGoogleSignIn, handleSignOut} from './LoginManager';
+import {handleGoogleSignIn} from './LoginManager';
 import './Login.css';
 
 const Login = () => {
     const [newUser, setNewUser] = useState(false);
+    const [password, setPassword] = useState(false);
+    // const [validPassword, setValidPassword] = useState(false);
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
@@ -15,6 +17,7 @@ const Login = () => {
         password: '',
         photo: ''
     })
+
     initializeLoginFramework();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
@@ -27,18 +30,19 @@ const Login = () => {
                 handleResponse(res, true);
             })
     }
-    const signOut =()=>{
-        handleSignOut()
-        .then(res=>{
-            handleResponse(res, false);
-        })
-    }
+    // const signOut =()=>{
+    //     handleSignOut()
+    //     .then(res=>{
+    //         handleResponse(res, false);
+    //     })
+    // }
 
     const handleResponse = (res, redirect) =>{
         setUser(res);
         setLoggedInUser(res);
         if(redirect){
-            history.replace(from);
+            // history.replace(from);
+            history.push('/home')
         }
     }
 
@@ -48,9 +52,17 @@ const Login = () => {
             isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
         }
         if (e.target.name === 'password') {
+            
             const isPasswordValid = e.target.value.length > 6;
             const passwordHasNumber = /\d{1}/.test(e.target.value);
-            isFieldValid = isPasswordValid && passwordHasNumber;
+
+            if (password && e.target.value===password) {
+                isFieldValid = isPasswordValid && passwordHasNumber;
+            }
+            if (!password) {
+               setPassword(e.target.value); 
+            }           
+            
         }
         if (e.target.name === 'name') {
             isFieldValid = true;
@@ -59,14 +71,18 @@ const Login = () => {
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo);
+            // setValidPassword(e.target.value);
         }
     }
+
     const handleSubmit = (e) => {
         console.log(user.email, user.password);
         if (newUser && user.name && user.password) {
             createUserWithEmailAndPassword(user.name, user.email, user.password)
                 .then(res=>{
-                    
+                    // setUser(res);
+                    // setLoggedInUser(res);
+                    // history.replace(from);
                     handleResponse(res, true);
                 })
         }
@@ -74,14 +90,14 @@ const Login = () => {
             signInWithEmailAndPassword(user.email, user.password)
                 .then(res=>{
                     
-                    handleResponse(res, false);
+                    handleResponse(res, true);
                 })
         }
         e.preventDefault();
     }
     return (
         <div className="login-system container">
-           
+         
             <h1>Login & Signup</h1>
             
             <form onSubmit={handleSubmit}>
@@ -102,24 +118,23 @@ const Login = () => {
                 <h5> Re-Enter Password
                 <input className="inputClass" type="password" onBlur={handleBlur} placeholder="enter password" name="password" required /> <br />
                 </h5>
-                
+               
                 <input className="submitButton" type="submit" value={newUser ? 'Sign Up' : 'SIgn In'} />
+                {/* {
+                    validPassword ?  :
+                        alert("please correct confirm password")
+                } */}
             </form>
-            {
-                user.isSignedIn ? <button onClick={signOut}>Sign Out From Google</button> :
+            
+                 {/* user.isSignedIn ? <button onClick={signOut}>Sign Out From Google</button> : */}
                     <button className="googleButton" onClick={googleSignIn}>Sign In With Google</button>
-            }
+            
             <br/>
             <h5> Dont have an account? 
             <input className="inputClass" type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
             <label htmlFor="bewUser">new user sign up</label> <br />
             </h5>
-            
-            {/* <p style={{ color: 'red' }}>{user.error}</p> */}
-            {
-                user.success && <p style={{ color: 'green' }}>User {newUser ? 'Created' : 'Logged In'} Successfully</p>
-            }
-
+        
         </div>
     );
 };
