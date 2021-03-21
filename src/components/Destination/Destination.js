@@ -45,9 +45,9 @@ const Destination = () => {
                     {
                         !permit && <div>
 
-                            <p>Pick from</p>
+                            <p className="titlePickAndTo mt-4">Pick from</p>
                             <input className="input" type="text" onBlur={handleBlur} placeholder="from" name="from" required/> <br/>
-                            <p>Pick to</p>
+                            <p className="titlePickAndTo mt-4">Pick to</p>
                             <input className="input" type="text" onBlur={handleBlur} placeholder="to" name="to" required/> <br/>
                             <br/>
                             <input className="submitButton" type="submit" onClick={() => handleSubmit()}></input>
@@ -55,12 +55,12 @@ const Destination = () => {
                     }
 
                     {
-                        permit && <div>
+                        permit && <div className="finalDestinition">
                             {
                                 details.map(detail => <li className="listStyleClass" key={detail.toString()}>{detail}</li>)
                             }
                             {
-                                <div className="d-flex justify-content-between finalCardDetails">
+                                <div className="d-flex justify-content-around finalCardDetails">
                                     <img className="destinationClass" src={element.image} alt=""/>
                                     <h6>{element.name}</h6>
                                     <h6> {icon} {element.capacity}</h6>

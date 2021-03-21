@@ -3,8 +3,9 @@
     margin-bottom: 40px;
     align-items: center;
     text-align: center;
-    background-color: #5ad5de;
+    background-color: #655ce2;
     border-radius: 10px;
+    height: 100px;
 }
 .listStyleClass{
     list-style: none;
@@ -28,7 +29,8 @@
     border: none;
 }
 .input{
-    width: 100px;
+    width: 200px;
+    text-align: center;
 }
 .inputStyle button:hover{
     color: white;
@@ -51,4 +53,21 @@
 
 .submitButton{
     width: 150px;
+}
+.finalCardDetails{
+    background-color: teal;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.titlePickAndTo{
+    background-color: thistle;
+    border-radius: 3px;
+}
+.titlePickAndTo:hover{
+    background-color: tomato;
+}
+.finalDestinition{
+    margin-top: 5px;
+    border-radius: 3px;
+    background-color: tomato;
 }
