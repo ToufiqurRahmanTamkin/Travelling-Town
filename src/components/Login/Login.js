@@ -5,11 +5,14 @@ import { useHistory, useLocation } from 'react-router';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from './LoginManager';
 import {handleGoogleSignIn} from './LoginManager';
 import './Login.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 
 const Login = () => {
+    const icon = <FontAwesomeIcon icon={faGoogle} />
     const [newUser, setNewUser] = useState(false);
     const [password, setPassword] = useState(false);
-    // const [validPassword, setValidPassword] = useState(false);
     const [user, setUser] = useState({
         isSignedIn: false,
         name: '',
@@ -30,19 +33,12 @@ const Login = () => {
                 handleResponse(res, true);
             })
     }
-    // const signOut =()=>{
-    //     handleSignOut()
-    //     .then(res=>{
-    //         handleResponse(res, false);
-    //     })
-    // }
 
     const handleResponse = (res, redirect) =>{
         setUser(res);
         setLoggedInUser(res);
         if(redirect){
-            // history.replace(from);
-            history.push('/home')
+            history.replace(from);
         }
     }
 
@@ -71,7 +67,6 @@ const Login = () => {
             const newUserInfo = { ...user };
             newUserInfo[e.target.name] = e.target.value;
             setUser(newUserInfo);
-            // setValidPassword(e.target.value);
         }
     }
 
@@ -80,9 +75,6 @@ const Login = () => {
         if (newUser && user.name && user.password) {
             createUserWithEmailAndPassword(user.name, user.email, user.password)
                 .then(res=>{
-                    // setUser(res);
-                    // setLoggedInUser(res);
-                    // history.replace(from);
                     handleResponse(res, true);
                 })
         }
@@ -98,41 +90,32 @@ const Login = () => {
     return (
         <div className="login-system container">
          
-            <h1>Login & Signup</h1>
+            <h4 className="loginTitle">Signup or Login Here</h4>
             
             <form onSubmit={handleSubmit}>
                 {
-                    newUser && <h5> Your Name
-                        <input className="inputClass" type="text" name="name" onBlur={handleBlur} placeholder="enter your name" required />
-                    </h5>
+                    newUser &&
+                        <input className="inputClass" type="text" name="name" onBlur={handleBlur} placeholder="Enter your name" required />
                 }
                 <br />
-                <h5>Your Email 
-                <input className="inputClass" type="text" onBlur={handleBlur} placeholder="enter your email" name="email" id="" required /> <br />
-                </h5>
+                <input className="inputClass" type="text" onBlur={handleBlur} placeholder="Enter your email" name="email" id="" required /> <br />
                 
-                <h5> Enter Password
-                <input className="inputClass" type="password" onBlur={handleBlur} placeholder="enter password" name="password" required /> <br />
-                </h5>
+ 
+                <input className="inputClass" type="password" onBlur={handleBlur} placeholder="Enter password" name="password" required /> <br />
+                
 
-                <h5> Re-Enter Password
-                <input className="inputClass" type="password" onBlur={handleBlur} placeholder="enter password" name="password" required /> <br />
-                </h5>
+
+                <input className="inputClass" type="password" onBlur={handleBlur} placeholder=" Confirm password" name="password" required /> <br />
+                
                
-                <input className="submitButton" type="submit" value={newUser ? 'Sign Up' : 'SIgn In'} />
-                {/* {
-                    validPassword ?  :
-                        alert("please correct confirm password")
-                } */}
+                <input className="submitButton" type="submit" value={newUser ? 'Sign Up' : 'Sign In'} />
+  
             </form>
-            
-                 {/* user.isSignedIn ? <button onClick={signOut}>Sign Out From Google</button> : */}
-                    <button className="googleButton" onClick={googleSignIn}>Sign In With Google</button>
-            
+                <button className="googleButton" onClick={googleSignIn}>{icon} Sign In With Google</button>
             <br/>
-            <h5> Dont have an account? 
+            <h5> Don't have an account? 
             <input className="inputClass" type="checkbox" onChange={() => setNewUser(!newUser)} name="newUser" id="" />
-            <label htmlFor="bewUser">new user sign up</label> <br />
+            <label htmlFor="bewUser">Check box for Sign-Up</label> <br />
             </h5>
         
         </div>

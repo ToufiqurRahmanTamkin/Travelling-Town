@@ -16,14 +16,14 @@ const Header = () => {
                     <Nav className="mr-auto"></Nav>
                     <Nav>
                         <Link to="/home" className="m-2 list-item">Home</Link>
-                        <Link to="/destination" className="m-2 list-item">Destination</Link>
-                        <Link to="/blog" className="m-2 list-item">Blog</Link>
-                        <Link to="/contact" className="m-2 list-item">Contact</Link>
+                        <Link to="/login" className="m-2 list-item">Destination</Link>
+                        <Link to="/home" className="m-2 list-item">Blog</Link>
+                        <Link to="/home" className="m-2 list-item">Contact</Link>
                         {
                             isSignedIn && <Link to="/login" className="m-2 list-item login-btn">{name}</Link>                              
                         }
                         {                           
-                        !isSignedIn &&  <Link to="/login" className="m-2 list-item login-btn">Login</Link>
+                            !isSignedIn &&  <Link to="/login" className="m-2 list-item login-btn">Login</Link>
                         }
                     </Nav>
                 </Navbar.Collapse>
