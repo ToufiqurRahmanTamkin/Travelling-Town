@@ -5,7 +5,7 @@
     text-align: center;
     background-color: #655ce2;
     border-radius: 10px;
-    height: 100px;
+    /* height: 100px; */
 }
 .listStyleClass{
     list-style: none;
