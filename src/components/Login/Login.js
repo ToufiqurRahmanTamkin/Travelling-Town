@@ -55,6 +55,9 @@ const Login = () => {
             if (password && e.target.value===password) {
                 isFieldValid = isPasswordValid && passwordHasNumber;
             }
+            else if (password && e.target.value !== password) {
+                alert('Please Confirm Your Password')
+            }
             if (!password) {
                setPassword(e.target.value); 
             }           

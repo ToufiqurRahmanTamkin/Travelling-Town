@@ -16,7 +16,10 @@ const Header = () => {
                     <Nav className="mr-auto"></Nav>
                     <Nav>
                         <Link to="/home" className="m-2 list-item">Home</Link>
-                        <Link to="/login" className="m-2 list-item">Destination</Link>
+                        {/* <Link to="/login" className="m-2 list-item">Destination</Link> */}
+                        {
+                         !isSignedIn &&    <Link to="/login" className="m-2 list-item">Destination</Link>
+                        }
                         <Link to="/home" className="m-2 list-item">Blog</Link>
                         <Link to="/home" className="m-2 list-item">Contact</Link>
                         {
